@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Quick Cab",
+  title: "Dashboard - Quick Cab",
   description: "Next level ride sharing service",
 };
 
-export default function RootLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`antialiased`}>{children}</body>
-    </html>
+    
+   <div>
+    dashboard/ sidebar
+    {children}</div>
+
   );
 }
