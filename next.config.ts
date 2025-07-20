@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  darkMode: "class",
 };
 
 export default nextConfig;

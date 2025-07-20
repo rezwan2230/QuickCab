@@ -4,6 +4,7 @@ import { Cog } from "lucide-react";
 import Link from "next/link";
 // import { ThemeSwitcher } from "./ThemeSwitcher";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@heroui/react";
+import { ThemeSwitcher } from "./ThemeSwithcher";
 // import { ThemeSwitcher } from "./ThemeSwitcher";
 export default function NavBar() {
   const routeMap: Record<string, string> = {
