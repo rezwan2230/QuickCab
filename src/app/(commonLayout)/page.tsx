@@ -1,14 +1,11 @@
 "use client";
-import { Button } from "@heroui/react";
+import Banner from "@/pages/home/Banner";
 import React from "react";
 
 const HomePage = () => {
   return (
     <div className="text-3xl">
-      welcome to home page.
-      <div>
-        <Button>sdsf</Button>
-      </div>
+      <Banner/>
     </div>
   );
 };
