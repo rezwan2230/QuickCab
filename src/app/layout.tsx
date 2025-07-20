@@ -1,10 +1,6 @@
-import type { Metadata } from "next";
+"use client"
 import "./globals.css";
-
-export const metadata: Metadata = {
-  title: "Quick Cab",
-  description: "Next level ride sharing service",
-};
+import Providers from "@/lib/Providers";
 
 export default function RootLayout({
   children,
@@ -13,7 +9,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
