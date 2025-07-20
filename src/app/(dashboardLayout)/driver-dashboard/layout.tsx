@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Dashboard - Quick Cab",
+  title: "Driver_Dashboard - Quick Cab",
   description: "Next level ride sharing service",
 };
 
-export default function DashboardLayout({
+export default function DriverDashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -13,7 +13,7 @@ export default function DashboardLayout({
   return (
     
    <div>
-    Dashboard common navbar
+    Driver Dashboard Sidebar
     {children}</div>
 
   );

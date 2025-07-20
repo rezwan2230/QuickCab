@@ -12,7 +12,7 @@ export default function CommonLayout({
 }>) {
   return (
     <div>
-      common navbar
+      Common layout navbar
       {children}
     </div>
   );
