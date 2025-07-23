@@ -1,94 +1,12 @@
-"use client"
-import { Card, CardFooter, CardHeader, Image } from "@heroui/react";
+import { Card, CardFooter, CardHeader } from "@heroui/card";
+import Image from "next/image";
 import Link from "next/link";
 
-const CarsPage = () => {
-  const data = [
-    {
-      name: "Mercedes-Benz E-Class",
-      brand: "Mercedes-Benz",
-      model: "E-Class-2023",
-      image:
-        "https://stimg2.cardekho.com/images/roadTestimages/userimages/722/1620195837912/GeneralRoadTest.jpg?tr=w-360?tr=w-320",
-      rating: 4.9,
-      fuelType: "d",
-      passengerCapacity: 5,
-      color: "Gray",
-      condition: "Nesw",
-    },
-    {
-      name: "Mercedes-Benz E-Class",
-      brand: "Mercedes-Benz",
-      model: "E-Class-2023",
-      image:
-        "https://stimg2.cardekho.com/images/roadTestimages/userimages/722/1620195837912/GeneralRoadTest.jpg?tr=w-360?tr=w-320",
-      rating: 4.9,
-      fuelType: "d",
-      passengerCapacity: 5,
-      color: "Gray",
-      condition: "Nesw",
-    },
-    {
-      name: "Mercedes-Benz E-Class",
-      brand: "Mercedes-Benz",
-      model: "E-Class-2023",
-      image:
-        "https://stimg2.cardekho.com/images/roadTestimages/userimages/722/1620195837912/GeneralRoadTest.jpg?tr=w-360?tr=w-320",
-      rating: 4.9,
-      fuelType: "d",
-      passengerCapacity: 5,
-      color: "Gray",
-      condition: "Nesw",
-    },
-    {
-      name: "Mercedes-Benz E-Class",
-      brand: "Mercedes-Benz",
-      model: "E-Class-2023",
-      image:
-        "https://stimg2.cardekho.com/images/roadTestimages/userimages/722/1620195837912/GeneralRoadTest.jpg?tr=w-360?tr=w-320",
-      rating: 4.9,
-      fuelType: "d",
-      passengerCapacity: 5,
-      color: "Gray",
-      condition: "Nesw",
-    },
-    {
-      name: "Mercedes-Benz E-Class",
-      brand: "Mercedes-Benz",
-      model: "E-Class-2023",
-      image:
-        "https://stimg2.cardekho.com/images/roadTestimages/userimages/722/1620195837912/GeneralRoadTest.jpg?tr=w-360?tr=w-320",
-      rating: 4.9,
-      fuelType: "d",
-      passengerCapacity: 5,
-      color: "Gray",
-      condition: "Nesw",
-    },
-    {
-      name: "Mercedes-Benz E-Class",
-      brand: "Mercedes-Benz",
-      model: "E-Class-2023",
-      image:
-        "https://stimg2.cardekho.com/images/roadTestimages/userimages/722/1620195837912/GeneralRoadTest.jpg?tr=w-360?tr=w-320",
-      rating: 4.9,
-      fuelType: "d",
-      passengerCapacity: 5,
-      color: "Gray",
-      condition: "Nesw",
-    },
-    {
-      name: "Mercedes-Benz E-Class",
-      brand: "Mercedes-Benz",
-      model: "E-Class-2023",
-      image:
-        "https://stimg2.cardekho.com/images/roadTestimages/userimages/722/1620195837912/GeneralRoadTest.jpg?tr=w-360?tr=w-320",
-      rating: 4.9,
-      fuelType: "d",
-      passengerCapacity: 5,
-      color: "Gray",
-      condition: "Nesw",
-    },
-  ];
+const CarsPage = async () => {
+  const res = await fetch("http://localhost:5000/api/v1/cars");
+  let data = await res.json();
+  console.log(data?.data);
+
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
       {/* Page Title */}
@@ -98,9 +16,8 @@ const CarsPage = () => {
 
       {/* Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-6 w-full max-w-7xl">
-        {data?.map((item: any) => (
-          <Card
-            key={item._id}
+        {data?.data.map((item: any) => (
+          <Card key={item.name}
             className="relative w-full h-[350px] rounded-xl overflow-hidden shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl hover:z-20"
           >
             {/* Card Header */}
@@ -115,10 +32,12 @@ const CarsPage = () => {
 
             {/* Car Image */}
             <Image
-              removeWrapper
+              // removeWrapper
               alt={item.name}
               className="z-0 w-full h-full object-cover transition-transform duration-500"
               src={item.image}
+              width={500}
+              height={300}
             />
 
             {/* Card Footer */}

@@ -1,3 +1,4 @@
+import Footer from "@/components/Shared/Footer";
 import NavBar from "@/components/Shared/Navbar";
 import type { Metadata } from "next";
 
@@ -14,7 +15,10 @@ export default function CommonLayout({
   return (
     <div>
       <NavBar/>
-      {children}
+     <div className="min-h-screen">
+       {children}
+     </div>
+      <Footer/>
     </div>
   );
 }

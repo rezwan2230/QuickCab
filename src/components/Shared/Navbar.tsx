@@ -1,6 +1,6 @@
 "use client";
 
-import { Cog } from "lucide-react";
+// import { Cog } from "lucide-react";
 import Link from "next/link";
 // import { ThemeSwitcher } from "./ThemeSwitcher";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@heroui/react";
@@ -17,7 +17,7 @@ export default function NavBar() {
     <Navbar maxWidth="2xl">
       <NavbarBrand>
         <Link className="flex" href="/">
-          <Cog />
+          {/* <Cog /> */}
           <p className="font-bold text-inherit px-4">APOLLO GEARS</p>
         </Link>
       </NavbarBrand>
