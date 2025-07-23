@@ -3,7 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CarsPage = async () => {
-  const res = await fetch("http://localhost:5000/api/v1/cars");
+  const res = await fetch("http://localhost:5000/api/v1/cars", {
+    cache: "force-cache", 
+    next: { revalidate: 60 }, 
+  });
   let data = await res.json();
   console.log(data?.data);
 

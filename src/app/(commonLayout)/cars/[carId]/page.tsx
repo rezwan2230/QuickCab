@@ -1,42 +1,21 @@
-"use client";
 
-import { Card, CardFooter, CardHeader, Image } from "@heroui/react";
+import { Card, CardFooter, CardHeader,  } from "@heroui/card";
+import Image from "next/image";
 
-interface IData {
-  _id: string;
-  name: string;
-  brand: string;
-  model: string;
-  image: string;
-  rating: number;
-  fuelType: string;
-  passengerCapacity: number;
-  color: string;
-  condition: string;
-}
 
-const CarsDetailsPage = ({
+const CarsDetailsPage = async({
   params,
-  searchParams,
 }: {
   params: Promise<{ carId: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  
 }) => {
-  // const { carId } = await params;
+  const { carId } = await params;
+  const res = await fetch(`http://localhost:5000/api/v1/cars/${carId}`,{
+    cache: "force-cache", 
+  },)
+  const {data} = await res.json();
+  console.log(data);
 
-  const data: IData = {
-    _id: "34702424923423sdfs7",
-    name: "Mercedes-Benz E-Class",
-    brand: "Mercedes-Benz",
-    model: "E-Class-2023",
-    image:
-      "https://stimg2.cardekho.com/images/roadTestimages/userimages/722/1620195837912/GeneralRoadTest.jpg?tr=w-360?tr=w-320",
-    rating: 4.9,
-    fuelType: "d",
-    passengerCapacity: 5,
-    color: "Gray",
-    condition: "Nesw",
-  };
 
   return (
     <div className="min-h-screen flex justify-center items-center p-4 bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-700">
@@ -47,10 +26,11 @@ const CarsDetailsPage = ({
         {/* Car Image with Overlay */}
         <div className="relative">
           <Image
-            removeWrapper
-            alt={data?.name}
+            alt={data?.name || "Car Image"}
             className="w-full h-[500px] object-cover transition-transform transform hover:scale-110"
-            src={data?.image}
+            src={data?.image || "/fallback-car.jpg"} 
+            width={800}
+            height={500}
           />
           {/* Frosted Glass Effect for Text Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-end p-6">
