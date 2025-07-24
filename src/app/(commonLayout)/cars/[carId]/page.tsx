@@ -1,34 +1,30 @@
-
-import { Card, CardFooter, CardHeader,  } from "@heroui/card";
+import nexiosInstance from "@/config/nexios.config";
+import { ICar } from "@/types";
+import { Card, CardFooter, CardHeader } from "@heroui/card";
 import Image from "next/image";
 
-
-const CarsDetailsPage = async({
+const CarsDetailsPage = async ({
   params,
 }: {
   params: Promise<{ carId: string }>;
-  
 }) => {
   const { carId } = await params;
-  const res = await fetch(`http://localhost:5000/api/v1/cars/${carId}`,{
-    cache: "force-cache", 
-  },)
-  const {data} = await res.json();
-  console.log(data);
-
+  const {data} = await nexiosInstance.get<{ data: ICar}>(`/cars/${carId}`, {
+    cache: "force-cache",
+  });
 
   return (
     <div className="min-h-screen flex justify-center items-center p-4 bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-700">
       <Card
-        key={data?._id}
+        key={data?.data?._id}
         className="relative w-full max-w-4xl rounded-lg overflow-hidden shadow-lg"
       >
         {/* Car Image with Overlay */}
         <div className="relative">
           <Image
-            alt={data?.name || "Car Image"}
+            alt={data?.data.name || "Car Image"}
             className="w-full h-[500px] object-cover transition-transform transform hover:scale-110"
-            src={data?.image || "/fallback-car.jpg"} 
+            src={data?.data.image || "/fallback-car.jpg"}
             width={800}
             height={500}
           />
@@ -36,11 +32,11 @@ const CarsDetailsPage = async({
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-end p-6">
             <CardHeader className="space-y-2 backdrop-blur-md bg-white/20 p-4 rounded-lg shadow-md">
               <h4 className="text-white font-extrabold text-4xl tracking-wider uppercase">
-                {data?.name}{" "}
-                <span className="text-lg text-white/70">({data?.model})</span>
+                {data?.data.name}{" "}
+                <span className="text-lg text-white/70">({data?.data.model})</span>
               </h4>
               <p className="text-white/80 text-sm font-medium tracking-wide">
-                Rating: {data?.rating} / 5
+                Rating: {data?.data.rating} / 5
               </p>
             </CardHeader>
           </div>
@@ -50,17 +46,17 @@ const CarsDetailsPage = async({
         <CardFooter className="p-8 backdrop-blur-md bg-white/20 dark:bg-gray-800/40 rounded-b-lg shadow-lg border-t border-gray-300 dark:border-gray-600">
           <div className="grid grid-cols-2 gap-4 w-full text-gray-800 dark:text-white">
             <div className="space-y-2">
-              <p className="font-bold text-2xl">Brand: {data?.brand}</p>
-              <p className="font-light text-lg">Model: {data?.model}</p>
-              <p className="font-light text-lg">Color: {data?.color}</p>
-              <p className="font-light text-lg">Condition: {data?.condition}</p>
+              <p className="font-bold text-2xl">Brand: {data?.data.brand}</p>
+              <p className="font-light text-lg">Model: {data?.data.model}</p>
+              <p className="font-light text-lg">Color: {data?.data.color}</p>
+              <p className="font-light text-lg">Condition: {data?.data.condition}</p>
             </div>
             <div className="space-y-2">
-              <p className="font-light text-lg">Fuel Type: {data?.fuelType}</p>
+              <p className="font-light text-lg">Fuel Type: {data?.data.fuelType}</p>
               <p className="font-light text-lg">
-                Passenger Capacity: {data?.passengerCapacity}
+                Passenger Capacity: {data?.data.passengerCapacity}
               </p>
-              <p className="font-light text-lg">Rating: {data?.rating} / 5</p>
+              <p className="font-light text-lg">Rating: {data?.data.rating} / 5</p>
             </div>
           </div>
           <div className="flex mt-6 space-x-4 justify-center">

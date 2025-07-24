@@ -1,14 +1,15 @@
+import nexiosInstance from "@/config/nexios.config";
+import { ICar } from "@/types";
 import { Card, CardFooter, CardHeader } from "@heroui/card";
 import Image from "next/image";
 import Link from "next/link";
 
+
 const CarsPage = async () => {
-  const res = await fetch("http://localhost:5000/api/v1/cars", {
-    cache: "force-cache", 
-    next: { revalidate: 60 }, 
+  const response = await nexiosInstance.get<{ data: ICar[] }>("/cars", {
+    cache: "force-cache",
   });
-  let data = await res.json();
-  console.log(data?.data);
+  const { data } = response;
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
@@ -19,8 +20,9 @@ const CarsPage = async () => {
 
       {/* Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-6 w-full max-w-7xl">
-        {data?.data.map((item: any) => (
-          <Card key={item.name}
+        {data?.data?.map((item: ICar) => (
+          <Card
+            key={item.name}
             className="relative w-full h-[350px] rounded-xl overflow-hidden shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl hover:z-20"
           >
             {/* Card Header */}
