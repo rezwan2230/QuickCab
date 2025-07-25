@@ -10,11 +10,13 @@ export default function MotionCar() {
       className="w-3/5 flex justify-end"
     >
       <Image
+        priority={false}
         alt="Card background"
         className="object-cover rounded-xl"
         src="https://i.ibb.co/Xfkyrjr4/hero-car-removebg-preview.png"
         width={500}
         height={500}
+        loading="lazy"
       />
     </motion.div>
   );
