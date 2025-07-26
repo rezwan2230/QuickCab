@@ -2,11 +2,15 @@
 
 import { Button } from "@heroui/react"
 import { signIn } from "next-auth/react"
+import { useSearchParams } from "next/navigation"
 
 const GoogleLoginBtn = () => {
+  const searchParams = useSearchParams()
+  const redirect = searchParams?.get("redirect");
+
   return (
     <div>
-        <Button onClick={()=>signIn("google",{callbackUrl: "http://localhost:3000"})}>Login with Google</Button>
+        <Button onClick={()=>signIn("google",{callbackUrl: redirect ? redirect : "/"})}>Login with Google</Button>
     </div>
   )
 }

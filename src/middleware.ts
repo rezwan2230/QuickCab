@@ -13,24 +13,35 @@ export async function middleware(request: NextRequest) {
     if (authRoutes.includes(pathname)) {
       return NextResponse.next();
     } else {
-      return NextResponse.redirect(new URL("/login", request.url));
+      return NextResponse.redirect(
+        new URL(
+          pathname ? `/login?redirect=${pathname}` : "/login",
+          request.url
+        )
+      );
     }
   }
-
-  const ROLES = {
-    ADMIN: "admin",
-    DRIVER: "driver",
-    USER: "user",
-  };
 
   //role base authorization
   let decodedToken = null;
   decodedToken = await jwtVerify(accessToken);
+  console.log(pathname);
   if (decodedToken) {
-    const { email, role, _id } = decodedToken;
-    console.log("🚀 ~ middleware ~ _id:", _id);
-    console.log("🚀 ~ middleware ~ role:", role);
-    console.log("🚀 ~ middleware ~ email:", email);
+    const { role } = decodedToken;
+    console.log(role);
+
+    if (role == "ADMIN" && pathname.match(/^\/admin-dashboard/)) {
+      return NextResponse.next();
+    }
+    if (role == "DRIVER" && pathname.match(/^\/driver-dashboard/)) {
+      return NextResponse.next();
+    }
+    if (role == "USER" && pathname.match(/^\/dashboard/)) {
+      return NextResponse.next();
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  } else {
+    return NextResponse.redirect(new URL("/", request.url));
   }
 }
 
