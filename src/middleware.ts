@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
 
   if (!accessToken) {
     if (AuthRoutes.includes(pathname)) {
-      return NextResponse.redirect(new URL("/login", request.url));
+      return NextResponse.next();
     } else {
       return NextResponse.redirect(
         new URL(
@@ -37,7 +37,6 @@ export async function middleware(request: NextRequest) {
       return NextResponse.next();
     }
   }
-
   return NextResponse.redirect(new URL("/", request.url));
 }
 

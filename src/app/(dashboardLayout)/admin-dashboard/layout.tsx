@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AdminLayout from "./layout/adminLayout";
 
 export const metadata: Metadata = {
   title: "Admin_Dashboard - Quick Cab",
@@ -11,10 +12,8 @@ export default function AdminDashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    
-   <div>
-    Admin Dashboard Sidebar
-    {children}</div>
-
+    <div>
+      <AdminLayout>{children}</AdminLayout>
+    </div>
   );
 }
