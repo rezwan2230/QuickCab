@@ -1,6 +1,11 @@
-"use client";
+import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "@/lib/Providers";
+
+export const metadata: Metadata = {
+  title: "Apollo Gears",
+  description: "Next Level Riding Sharing Service",
+};
 
 export default function RootLayout({
   children,
@@ -9,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body >
+      <body className={` antialiased`}>
         <Providers>
           <div className="mx-auto container">{children}</div>
         </Providers>
