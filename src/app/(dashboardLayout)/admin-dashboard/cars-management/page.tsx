@@ -1,6 +1,11 @@
+import AddCar from "./components/AddCar";
 
 const CarsManagementPage = () => {
-  return <div>Cars Management Page</div>;
+  return (
+    <div>
+      <AddCar />
+    </div>
+  );
 };
 
 export default CarsManagementPage;
