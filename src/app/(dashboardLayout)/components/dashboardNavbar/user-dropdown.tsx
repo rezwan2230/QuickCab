@@ -66,7 +66,7 @@ export const UserDropdown = () => {
           Log Out
         </DropdownItem>
         <DropdownItem key="switch">
-          {/* <ThemeSwitcher></ThemeSwitcher> */}
+          <ThemeSwitcher></ThemeSwitcher>
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
