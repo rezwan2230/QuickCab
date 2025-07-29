@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import UserLayout from "./layout/userLayout";
 
 export const metadata: Metadata = {
   title: "Dashboard - Quick Cab",
@@ -11,10 +12,8 @@ export default function UserDashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    
-   <div>
-    User Dashboard Sidebar
-    {children}</div>
-
+    <div>
+      <UserLayout>{children}</UserLayout>
+    </div>
   );
 }
